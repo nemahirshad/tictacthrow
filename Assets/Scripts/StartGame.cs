@@ -1,21 +1,19 @@
-using TouchScript.Hit;
+using System;
 using TouchScript.Gestures;
 using UnityEngine;
 
+[RequireComponent(typeof(TapGesture))]
 public class StartGame : MonoBehaviour
 {
-    private void OnDestroy()
+    TapGesture tap;
+    void OnEnable()
     {
-        GetComponent<TapGesture>().Tapped -= DetectStart;
+        tap = GetComponent<TapGesture>();
+        if (tap != null) tap.Tapped += DetectStart;
     }
-
-    private void Start()
+    void OnDisable() { if (tap != null) tap.Tapped -= DetectStart; }
+    void DetectStart(object sender,EventArgs args)
     {
-        GetComponent<TapGesture>().Tapped += DetectStart;
-    }
-
-    private void DetectStart(object sender, System.EventArgs e)
-    {
-        GameManager.instance.OnRestart();
+        if (GameManager.instance != null) GameManager.instance.OnRestart();
     }
 }

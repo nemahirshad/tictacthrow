@@ -308,8 +308,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   numberOfTapsRequired: 1
-  timeLimit: Infinity
-  distanceLimit: Infinity
+  timeLimit: 0.8
+  distanceLimit: 4
   combinePointers: 0
   combinePointersInterval: 0.3
 --- !u!1 &124462709
@@ -873,8 +873,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   numberOfTapsRequired: 1
-  timeLimit: Infinity
-  distanceLimit: Infinity
+  timeLimit: 0.8
+  distanceLimit: 4
   combinePointers: 0
   combinePointersInterval: 0.3
 --- !u!1 &519420028
@@ -1185,8 +1185,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   numberOfTapsRequired: 1
-  timeLimit: Infinity
-  distanceLimit: Infinity
+  timeLimit: 0.8
+  distanceLimit: 4
   combinePointers: 0
   combinePointersInterval: 0.3
 --- !u!1 &739113778
@@ -1667,8 +1667,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   numberOfTapsRequired: 1
-  timeLimit: Infinity
-  distanceLimit: Infinity
+  timeLimit: 0.8
+  distanceLimit: 4
   combinePointers: 0
   combinePointersInterval: 0.3
 --- !u!1 &1063144942
@@ -1852,10 +1852,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -2106,8 +2106,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   numberOfTapsRequired: 1
-  timeLimit: Infinity
-  distanceLimit: Infinity
+  timeLimit: 0.8
+  distanceLimit: 4
   combinePointers: 0
   combinePointersInterval: 0.3
 --- !u!1 &1689084177
@@ -2464,8 +2464,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   numberOfTapsRequired: 1
-  timeLimit: Infinity
-  distanceLimit: Infinity
+  timeLimit: 0.8
+  distanceLimit: 4
   combinePointers: 0
   combinePointersInterval: 0.3
 --- !u!212 &1779329182
@@ -2926,8 +2926,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   numberOfTapsRequired: 1
-  timeLimit: Infinity
-  distanceLimit: Infinity
+  timeLimit: 0.8
+  distanceLimit: 4
   combinePointers: 0
   combinePointersInterval: 0.3
 --- !u!1 &1893626623
@@ -3032,8 +3032,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   numberOfTapsRequired: 1
-  timeLimit: Infinity
-  distanceLimit: Infinity
+  timeLimit: 0.8
+  distanceLimit: 4
   combinePointers: 0
   combinePointersInterval: 0.3
 --- !u!1 &1909095976
@@ -3087,7 +3087,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -3220,7 +3220,11 @@ MonoBehaviour:
   numberOfFlashes: 5
   delayBeforeEndScreen: 0.2
   turnIndicatorText: {fileID: 407839383}
-  canPlay: 1
+  minimumThrowInterval: 0.65
+  clearSurfaceDuration: 0.18
+  maximumContactTime: 0.8
+  maximumTravelCentimeters: 4
+  resultProtectionDuration: 2
 --- !u!1 &2056825888
 GameObject:
   m_ObjectHideFlags: 0
@@ -3288,8 +3292,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   numberOfTapsRequired: 1
-  timeLimit: Infinity
-  distanceLimit: Infinity
+  timeLimit: 0.8
+  distanceLimit: 4
   combinePointers: 0
   combinePointersInterval: 0.3
 --- !u!65 &2056825892
@@ -3429,8 +3433,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   numberOfTapsRequired: 1
-  timeLimit: Infinity
-  distanceLimit: Infinity
+  timeLimit: 0.8
+  distanceLimit: 4
   combinePointers: 0
   combinePointersInterval: 0.3
 --- !u!1 &2120130378

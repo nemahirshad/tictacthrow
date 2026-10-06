@@ -2,73 +2,44 @@ using System;
 using TouchScript.Gestures;
 using UnityEngine;
 
+[RequireComponent(typeof(TapGesture))]
 public class TileHandler : MonoBehaviour
 {
     [SerializeField] int tileNumber;
-
-    [Tooltip("IMPORTANT: Assign the SpriteRenderer component from the CHILD GameObject that displays the X/O symbol here.")]
     [SerializeField] SpriteRenderer symbolSpriteRenderer;
-
-    private TapGesture tapGestureComponent;
-
-    private void Awake()
+    public int TileNumber { get { return tileNumber; } }
+    TapGesture tap;
+    Color originalColor = Color.white;
+    void Awake()
     {
-        if (symbolSpriteRenderer == null)
-        {
-            Debug.LogError($"TileHandler on '{gameObject.name}': SymbolSpriteRenderer is not assigned in the Inspector. Please assign the child's SpriteRenderer.", this);
-        }
+        tap = GetComponent<TapGesture>();
+        if (symbolSpriteRenderer != null) originalColor = symbolSpriteRenderer.color;
+        else Debug.LogError("Missing symbol renderer on " + name,this);
     }
-
-    private void OnEnable()
+    void OnEnable()
     {
-        tapGestureComponent = GetComponent<TapGesture>();
-        if (tapGestureComponent != null)
-        {
-            tapGestureComponent.Tapped += TappedHandler;
-        }
-        else
-        {
-            Debug.LogError($"TapGesture component not found on {gameObject.name}. Tap input will not work for this tile.", this);
-        }
+        if (tap == null) tap = GetComponent<TapGesture>();
+        if (tap != null) tap.Tapped += Tapped;
     }
-
-    private void OnDisable()
+    void OnDisable() { if (tap != null) tap.Tapped -= Tapped; }
+    public void ConfigureInput(float contactTime,float travelCentimeters)
     {
-        if (tapGestureComponent != null)
-        {
-            tapGestureComponent.Tapped -= TappedHandler;
-        }
+        if (tap == null) tap = GetComponent<TapGesture>();
+        if (tap == null) return;
+        tap.TimeLimit = contactTime;
+        tap.DistanceLimit = travelCentimeters;
     }
-
     public void CleanUp()
     {
-        if (symbolSpriteRenderer != null)
-        {
-            symbolSpriteRenderer.sprite = null;
-            symbolSpriteRenderer.transform.localScale = Vector3.one;
-        }
+        if (symbolSpriteRenderer == null) return;
+        LeanTween.cancel(symbolSpriteRenderer.gameObject);
+        symbolSpriteRenderer.sprite = null;
+        symbolSpriteRenderer.color = originalColor;
+        symbolSpriteRenderer.transform.localScale = Vector3.one;
     }
-
-    public SpriteRenderer GetSymbolSpriteRenderer()
+    public SpriteRenderer GetSymbolSpriteRenderer() { return symbolSpriteRenderer; }
+    void Tapped(object sender,EventArgs args)
     {
-        return symbolSpriteRenderer;
+        if (GameManager.instance != null) GameManager.instance.ReceiveHit(this,tap.ScreenPosition);
     }
-
-    private void TappedHandler(object sender, EventArgs e)
-    {
-        Debug.Log($"TAP DETECTED on GameObject: '{gameObject.name}' with Tile Number: {tileNumber}", this.gameObject);
-
-        if (GameManager.instance != null && GameManager.instance.canPlay)
-        {
-            if (symbolSpriteRenderer != null)
-            {
-                GameManager.tileHit?.Invoke(symbolSpriteRenderer, tileNumber);
-            }
-            else
-            {
-                Debug.LogError($"SymbolSpriteRenderer not assigned or found in TileHandler for {gameObject.name}, cannot process tap.", this);
-            }
-        }
-    }
-
 }
