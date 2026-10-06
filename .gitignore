@@ -57,3 +57,10 @@ sysinfo.txt
 
 # Crashlytics generated file
 crashlytics-build.properties
+
+# Additional Unity generated files
+/[Uu]ser[Ss]ettings/
+/[Rr]ecordings/
+/.utmp/
+*.aab
+*.app
